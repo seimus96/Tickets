@@ -1,14 +1,56 @@
+<!--
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
     </ion-title>
   </ion-navbar>
 </ion-header>
-
+-->
+<!-- background-color: #E0FFFF; 5F9EA0-->
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div padding></div>
+  <div class="titulo" padding>
+    <h3>
+      Bienvenido a Soporte MAG
+    </h3>
+  </div>
+  <!--<ion-list>-->
+  <form novalidate (ngSubmit)="goLogin()" [formGroup]="loginForm">
+    <!--Correo-->
+    <ion-item>
+      <ion-label floating>Correo</ion-label>
+      <ion-input type="text" [(ngModel)]="userData.mail" formControlName="mail" [class.error1]="!loginForm.controls.mail.valid 
+                               && loginForm.controls.mail.dirty"></ion-input>
+    </ion-item>
+    <!--Manejo de errores-->
+    <ion-item no-lines *ngIf="loginForm.get('mail').hasError('required') && 
+    loginForm.get('mail').touched">
+      <div class="error" *ngIf="loginForm.get('mail').hasError('required') && 
+      loginForm.get('mail').touched">
+        Por favor ingrese su email
+      </div>
+    </ion-item>
+    <!--Contraseña-->
+    <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input type="password" formControlName="pass"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines *ngIf="loginForm.get('pass').hasError('required')  && 
+                              loginForm.get('pass').touched">
+      <div class="error" *ngIf="loginForm.get('pass').hasError('required') && 
+                                loginForm.get('pass').touched">
+        Por favor ingrese su contrseña
+      </div>
+    </ion-item>
+    <!--Botones-->
+    <div padding></div>
+    <button ion-button block [disabled]="loginForm.invalid">Ingresar</button>
+
+  </form>
+  <button ion-button block color="secondary" (click)="goRegister()">Registrarse</button>
+  <div padding>
+    <button ion-button block clear>Ver estado de un Ticket</button>
+    <button ion-button block color="secondary" clear>Soy un agente</button>
+  </div>
 </ion-content>

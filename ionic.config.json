@@ -1,5 +1,7 @@
 {
   "name": "Tickets",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
