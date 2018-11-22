@@ -1,0 +1,21 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Tickets</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <!--ion-button outline block-->
+    <button ion-item *ngFor="let item of items" (click)="itemSelected({itemRx: item})">
+      Ticket# {{ item }}
+    </button>
+  </ion-list>
+<!--Agregar tickets-->
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="goInsert()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>

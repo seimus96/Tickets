@@ -17,25 +17,69 @@
   <!--Titulo-->
   <div padding></div>
   <div class="titulo">
-        <h3>
-          Registro de la Cuenta
-        </h3>
+    <h3>
+      Registro de la Cuenta
+    </h3>
   </div>
   <!--Contenido-->
-  <form>
-  <ion-list>
+  <form (ngSubmit)="goRegister()" [formGroup]="registerForm">
+    <!--Correo-->
     <ion-item>
       <ion-label floating>Correo</ion-label>
-      <ion-input type="text" ></ion-input>
+      <ion-input type="text" [(ngModel)]="userData.mail" formControlName="mail" [class.error1]="!registerForm.controls.mail.valid 
+                               && registerForm.controls.mail.dirty"></ion-input>
     </ion-item>
+    <!--Manejo de errores--> 
+      <div style="text-align: right" class="error" *ngIf="registerForm.get('mail').hasError('required') && 
+      registerForm.get('mail').touched">
+        Obligatorio
+      </div>
+    <!--Nombre-->
+    <ion-item>
+      <ion-label floating>Nombre Completo</ion-label>
+      <ion-input type="text" [(ngModel)]="userData.name" formControlName="name" [class.error1]="!registerForm.controls.name.valid 
+                                && registerForm.controls.name.dirty"></ion-input>
+    </ion-item>
+      <div style="text-align: right" class="error" *ngIf="registerForm.get('name').hasError('required') && 
+       registerForm.get('name').touched">
+        Obligatorio
+      </div>
+      <!--Telefono-->
+      <ion-item>
+        <ion-label floating>Telefono</ion-label>
+        <ion-input type="tel" [(ngModel)]="userData.phone" formControlName="phone"></ion-input>
+      </ion-item>
+    <!--Contraseña-->
     <ion-item>
       <ion-label floating>Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="userData.pass" formControlName="pass"></ion-input>
     </ion-item>
-  </ion-list>
-  <!--Botones-->
-  <div padding></div>
-  <button ion-button block>Registrar</button>
+    <div  style="text-align: right" class="error" *ngIf="registerForm.get('pass').hasError('required') && 
+                                registerForm.get('pass').touched">
+        Obligatorio
+    </div>
+    <!--Contraseña 2-->
+    <ion-item>
+      <ion-label floating>Confirmar Contraseña</ion-label>
+      <ion-input type="password" formControlName="pass2" [(ngModel)]="confPwd"></ion-input>
+    </ion-item>
+    <div style="text-align: right" class="error" *ngIf="registerForm.get('pass2').hasError('required') && 
+                              registerForm.get('pass2').touched">
+      Obligatorio
+    </div>
+
+
+
+    <!--Botones 
+      <p style="color: red" *ngIf="confirmated">Contraseñas no coinciden</p>
+    
+      <div class="error" *ngIf="confirmated">
+        Contraseñas no coinciden
+      </div>
+    -->
+    <div padding></div>
+    <button ion-button block [disabled]="registerForm.invalid">Registrar</button>
+
   </form>
   <button ion-button block color="secondary" (click)="goCancel()">Cancelar</button>
 </ion-content>

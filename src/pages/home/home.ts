@@ -1,7 +1,8 @@
 import { RegisterPage } from './../register/register';
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReadTicketsPage } from '../read-tickets/read-tickets';
 
 @Component({
   selector: 'page-home',
@@ -11,9 +12,13 @@ export class HomePage implements OnInit {
   
   loginForm: FormGroup;
   public userData = { "mail": "", 
-                      "pass": ""/*, "email": "", "name": "" */};
-  constructor(public navCtrl: NavController) {
-    
+                      "pass": ""/*, "email": "", "name": "" */}
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    //console.log(this.navParams.get('usuario'));
+    if (this.navParams.get('usuario') != null){
+      this.userData.mail = this.navParams.get('usuario');
+    }
   }
   goRegister(){
     this.navCtrl.push(RegisterPage, {testo:'Pistashe'});
@@ -47,6 +52,7 @@ export class HomePage implements OnInit {
   goLogin(){
     console.log("mail es: " + this.userData.mail);
     console.log("password es: " + this.userData.pass);
-
+    
+    this.navCtrl.push(ReadTicketsPage, {testo: this.userData.mail});
   }
 }
