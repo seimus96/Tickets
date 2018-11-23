@@ -50,14 +50,15 @@ export class RegisterPage implements OnInit{
   }
   */
   goRegister(){
-    console.log("mail es: " + this.userData.mail);
+    /*console.log("mail es: " + this.userData.mail);
     console.log("nombre es: " + this.userData.name);
     console.log("telefono es: " + this.userData.phone);
-    console.log("password es: " + this.userData.pass);
+    console.log("password es: " + this.userData.pass);*/
     if(this.confPwd == this.userData.pass) {
-      console.log("confPwd es: " + this.confPwd);
+      //console.log("confPwd es: " + this.confPwd);
       this.confirmated = false;
-      this.navCtrl.setRoot(HomePage,{usuario:this.userData.mail});
+      this.navCtrl.setRoot(HomePage,{usuario:this.userData.mail,
+                                     flag: 1});
     } else {
       this.confirmated = true;
     }

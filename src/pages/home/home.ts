@@ -16,9 +16,14 @@ export class HomePage implements OnInit {
   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     //console.log(this.navParams.get('usuario'));
-    if (this.navParams.get('usuario') != null){
+    if (this.navParams.get('flag') != null){
       this.userData.mail = this.navParams.get('usuario');
+    }else{
+      this.userData.mail = '';
+      this.userData.pass = '';
+      this.loginForm = null;
     }
+
   }
   goRegister(){
     this.navCtrl.push(RegisterPage, {testo:'Pistashe'});
@@ -48,11 +53,15 @@ export class HomePage implements OnInit {
       */
     });
   }
+/*
+  ionViewWillEnter(){
+    this.userData.mail = '';
+    this.userData.pass = '';
+  }*/
 
   goLogin(){
     console.log("mail es: " + this.userData.mail);
     console.log("password es: " + this.userData.pass);
-    
     this.navCtrl.push(ReadTicketsPage, {testo: this.userData.mail});
   }
 }
